@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Card from "./Card";
 import { nanoid } from "nanoid";
 import { Link, Outlet, useLocation } from "react-router-dom";
+import Description from "./Description";
 
 export default function Root() {
   const user: string | null = localStorage.getItem("user");
@@ -20,17 +21,28 @@ export default function Root() {
   return (
     <div className="App">
       <div className="container">
-        <div id="logo">
-          <Link to="/">
-            <img src="/logo.png" alt="logo" width={70} />
-            <strong>Сервис Записочки</strong>
-          </Link>
-        </div>
+        <header>
+          <div id="logo">
+            <Link to="/">
+              <img src="/logo.png" alt="logo" />
+            </Link>
+            <p className="host">{window.location.hostname}</p>
+          </div>
+          <div className="title">
+            <h1>Сервис Записочки</h1>
+          </div>
+        </header>
 
-        {location.pathname === "/" && <Card userId={userId} />}
+        {location.pathname === "/" && (
+          <>
+            <Description />
+            <Card userId={userId} />
+          </>
+        )}
+
         <Outlet />
+        <footer>2024 &copy; AntonV</footer>
       </div>
-      <footer>2024 &copy; AntonV</footer>
     </div>
   );
 }

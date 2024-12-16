@@ -10,12 +10,11 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage404 />,
-    children: [
-      {
-        path: "note/:noteId",
-        element: <NotePage />,
-      },
-    ],
+  },
+  {
+    path: "note/:noteId",
+    element: <NotePage />,
+    errorElement: <ErrorPage404 />,
   },
 ]);
 
